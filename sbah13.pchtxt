@@ -1,0 +1,70 @@
+@nsobid-B424BE150A8E7D78701CBE7A439D9EBF
+#Super Mario Odyssey 1.3.0 USA
+#1.2: @nsobid-F5DCCDDB37E97724EBDBCCCDBEB965FF
+ 
+@flag print_values // <- This flag enables printing applied values for debug purposes
+ 
+// NSO has a 0x100 long header, which is not part of the binary offset
+@flag offset_shift 0x100 // <- This flag auto adds 0x100 to all offsets in the text
+ 
+// Slowdown mode
+//@disabled
+//004C9A8C 41008052
+ 
+// TJ 0 gravity
+//@disabled
+//1.2: 0045BFDC 0000001C
+//1.0: 0043D5BC 0000001C
+//data:00 AC 43 BD C0 03 5F D6
+ 
+// isLightDown true
+//@disabled
+//000B2790 20008052
+ 
+// Refresh Moons || GameDataFile::setGotShine(ShineInfo const*) false
+@enabled
+004C9880 C0035FD6
+//1.2: 0054B96C C0035FD6
+//1.0: 0051EB88 C0035FD6
+//data (way past): 09 29 40 29 49 01 09 0B 0A 2D 41 29 49 01 09 0B 69 01 09 0B
+ 
+// isUnlockedWorld true
+//@disabled
+//00534F84 20008052
+ 
+// GameProgressData::isAlreadyGotWorld(int) true
+//@disabled
+//00535114 20008052
+ 
+// GameProgressData::isRepairHomeByCrashedBoss(void) true
+//@disabled
+//00534F1C 20008052
+ 
+// GameProgressData::isRepairHome(void) true
+//@disabled
+//00534EDC 20008052
+ 
+// GameProgressData::isCrashHome(void) false
+//@disabled
+//00534EB4 00008052
+ 
+// GameProgressData::crashHome(void) ret
+//@disabled
+//00534EBC C0035FD6 
+ 
+// GameProgressData::bossAttackHome(void) ret
+//@disabled
+//00534EFC C0035FD6
+ 
+// GameDataFile::startStage(const char *, int) clash b.ne -> b.eq
+//@disabled
+//0051CF74 A07C8E54
+ 
+// Always Enable Warps || MapLayout::isEnableCheckpointWarp(void) true
+@enabled
+001D0B90 20008052
+//1.2: 001F4358 20008052
+//1.0: 001F2A2C 20008052
+//data: FF 03 01 D1 F4 4F 02 A9 FD 7B 03 A9 FD C3 00 91 00 20 41 F9
+//change: 00 01 00 12 -> 20 00 80 52
+ 
